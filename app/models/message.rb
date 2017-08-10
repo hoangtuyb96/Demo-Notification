@@ -1,9 +1,9 @@
 class Message < ApplicationRecord
-  after_create_commit :notify
+  after_create_commit { notify }
 
   private
 
   def notify
-    Notification.create(event: "New Notification")
+    Notification.create(event: "New Notification (#{self.body})")
   end
 end
